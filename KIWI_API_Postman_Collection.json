@@ -1,0 +1,569 @@
+{
+  "info": {
+    "_postman_id": "a1b2c3d4-e5f6-g7h8-i9j0-k1l2m3n4o5p6",
+    "name": "KIWI API",
+    "description": "Collection for testing KIWI (Knowledge Interface With Interactions) API endpoints",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Conversations & Branching",
+      "item": [
+        {
+          "name": "Add Message",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"branchId\": \"branch-1\",\n    \"content\": \"Hello, KIWI!\",\n    \"role\": \"user\",\n    \"userId\": \"user-1\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/message",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "message"]
+            },
+            "description": "Add a message to a branch"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Conversation",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/api/conversation/branch-1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "conversation", "branch-1"]
+            },
+            "description": "Fetch full conversation for a branch"
+          },
+          "response": []
+        },
+        {
+          "name": "Fork Branch",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"parentBranchId\": \"branch-1\",\n    \"userId\": \"user-1\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/fork",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "fork"]
+            },
+            "description": "Create a new branch from an existing one"
+          },
+          "response": []
+        },
+        {
+          "name": "Merge Branches",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"sourceBranchId\": \"branch-1\",\n    \"targetBranchId\": \"branch-2\",\n    \"userId\": \"user-1\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/merge",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "merge"]
+            },
+            "description": "Merge two branches into a new one"
+          },
+          "response": []
+        },
+        {
+          "name": "Get User Branches",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/api/branches/user-1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "branches", "user-1"]
+            },
+            "description": "List all branches for a user"
+          },
+          "response": []
+        }
+      ],
+      "description": "Endpoints for managing conversations and branches"
+    },
+    {
+      "name": "LLM Integration",
+      "item": [
+        {
+          "name": "Send to LLM (OpenAI)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"messages\": [\n        {\n            \"role\": \"user\",\n            \"content\": \"Hello, AI!\"\n        }\n    ],\n    \"llmType\": \"openai\",\n    \"branchId\": \"branch-1\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/llm",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "llm"]
+            },
+            "description": "Send messages to OpenAI"
+          },
+          "response": []
+        },
+        {
+          "name": "Send to LLM (Gemini)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"messages\": [\n        {\n            \"role\": \"user\",\n            \"content\": \"Hello, AI!\"\n        }\n    ],\n    \"llmType\": \"gemini\",\n    \"branchId\": \"branch-1\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/llm",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "llm"]
+            },
+            "description": "Send messages to Google Gemini"
+          },
+          "response": []
+        }
+      ],
+      "description": "Endpoints for LLM integration"
+    },
+    {
+      "name": "To-Do System",
+      "item": [
+        {
+          "name": "Add Todo",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"branchId\": \"branch-1\",\n    \"content\": \"Implement KIWI backend\",\n    \"userId\": \"user-1\",\n    \"priority\": \"high\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/todo",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "todo"]
+            },
+            "description": "Add a to-do item to a branch"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Todos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/api/todo/branch-1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "todo", "branch-1"]
+            },
+            "description": "List all todos in a branch"
+          },
+          "response": []
+        },
+        {
+          "name": "Toggle Todo",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"isCompleted\": true\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/todo/todo-id-here",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "todo", "todo-id-here"]
+            },
+            "description": "Toggle todo complete/incomplete"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Todo",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/api/todo/todo-id-here",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "todo", "todo-id-here"]
+            },
+            "description": "Remove a to-do"
+          },
+          "response": []
+        }
+      ],
+      "description": "Endpoints for to-do system"
+    },
+    {
+      "name": "Notion-Like Blocks",
+      "item": [
+        {
+          "name": "Add Block",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"branchId\": \"branch-1\",\n    \"type\": \"text\",\n    \"content\": \"This is a text block\",\n    \"userId\": \"user-1\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/block",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "block"]
+            },
+            "description": "Add a block (text/code/image/heading)"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Blocks",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/api/block/branch-1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "block", "branch-1"]
+            },
+            "description": "Get all blocks for a branch"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Block",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"content\": \"Updated text block content\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/block/block-id-here",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "block", "block-id-here"]
+            },
+            "description": "Update a block"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Block",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/api/block/block-id-here",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "block", "block-id-here"]
+            },
+            "description": "Delete a block"
+          },
+          "response": []
+        },
+        {
+          "name": "Reorder Blocks",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"blockIds\": [\"block-id-1\", \"block-id-2\", \"block-id-3\"]\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/block/reorder",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "block", "reorder"]
+            },
+            "description": "Reorder blocks"
+          },
+          "response": []
+        }
+      ],
+      "description": "Endpoints for Notion-like blocks"
+    },
+    {
+      "name": "Shared Memory",
+      "item": [
+        {
+          "name": "Add Memory Item",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"branchId\": \"branch-1\",\n    \"type\": \"quote\",\n    \"content\": \"Knowledge is power\",\n    \"source\": \"Francis Bacon\",\n    \"userId\": \"user-1\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/memory",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "memory"]
+            },
+            "description": "Add a memory item (quote, link, insight)"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Memory Items",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/api/memory/branch-1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "memory", "branch-1"]
+            },
+            "description": "Get all memory items for a branch"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Memory Item",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"content\": \"Updated memory content\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/memory/memory-id-here",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "memory", "memory-id-here"]
+            },
+            "description": "Update a memory item"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Memory Item",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/api/memory/memory-id-here",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "memory", "memory-id-here"]
+            },
+            "description": "Delete a memory item"
+          },
+          "response": []
+        },
+        {
+          "name": "Search Memory Items",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/api/memory/search/knowledge?userId=user-1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "memory", "search", "knowledge"],
+              "query": [
+                {
+                  "key": "userId",
+                  "value": "user-1"
+                }
+              ]
+            },
+            "description": "Search memory items"
+          },
+          "response": []
+        }
+      ],
+      "description": "Endpoints for shared memory"
+    },
+    {
+      "name": "Misc",
+      "item": [
+        {
+          "name": "Pin Message",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"messageId\": \"message-id-here\",\n    \"isPinned\": true\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/pin",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "pin"]
+            },
+            "description": "Pin a message"
+          },
+          "response": []
+        },
+        {
+          "name": "Bookmark Message",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"messageId\": \"message-id-here\",\n    \"isBookmarked\": true\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/bookmark",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "bookmark"]
+            },
+            "description": "Bookmark a reply for future fork"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Insights",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/api/insights/branch-1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "insights", "branch-1"]
+            },
+            "description": "AI-generated branch summary"
+          },
+          "response": []
+        }
+      ],
+      "description": "Miscellaneous endpoints"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000",
+      "type": "string"
+    }
+  ]
+}
