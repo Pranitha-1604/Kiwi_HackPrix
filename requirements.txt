@@ -1,0 +1,28 @@
+# KIWI Backend Requirements
+# Python equivalents of Node.js dependencies
+
+# Core dependencies
+fastapi>=0.104.0  # Python equivalent to Express.js
+uvicorn>=0.23.2  # ASGI server for FastAPI
+python-dotenv>=1.0.0  # For loading environment variables
+python-multipart>=0.0.6  # For handling form data
+starlette>=0.27.0  # Web framework used by FastAPI
+pydantic>=2.4.2  # Data validation
+
+# Database
+supabase>=0.7.1  # Python client for Supabase
+
+# API clients
+openai>=1.3.5  # OpenAI API client
+google-generativeai>=0.3.1  # Google Generative AI client
+requests>=2.31.0  # HTTP client (equivalent to axios)
+
+# Utilities
+uuid>=1.30  # UUID generation
+loguru>=0.7.2  # Logging (equivalent to morgan)
+
+# CORS
+fastapi-cors>=0.0.6  # CORS middleware
+
+# Development dependencies (optional)
+watchfiles>=0.21.0  # File watching (equivalent to nodemon)
